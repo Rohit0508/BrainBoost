@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -14,19 +10,209 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #5371ad; 
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
+
 }
 
-.App-link {
-  color: #61dafb;
+
+
+/* footer----------------------------- */
+
+.social-container {
+  background: #adaaaa;
+  padding: 25px 50px;
+  /* position:absolute; */
+  bottom: 0;
+  width: 100%;
 }
+a.social {
+  margin: 0 1rem;
+  transition: transform 250ms;
+  display: inline-block;
+}
+a.social:hover {
+  transform: translateY(-2px);
+}
+a.linkedin {
+  color: #4d56d7;
+}
+
+a.facebook {
+  color: #4968ad;
+}
+
+a.twitter {
+  color: #49a1eb;
+}
+
+a.instagram {
+  color: black;
+}
+.question-list{
+  text-align: center;
+  margin-top: 50px;
+
+}
+/* Style to list the questions......... */
+.question-list ul li{
+  display: inline-flex;
+  border: 1px solid skyblue;
+  padding: 5px;
+  width: 150px;
+}
+.question-list ul{
+  margin: 0px;
+}
+.name{
+  width: 40px;
+}
+.contain{
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+  border: solid black;
+  margin: auto;
+
+
+}
+.addproblem label{
+  padding: 4px;
+  margin: 10px;
+  display: block;
+
+  
+}
+.addproblem input{
+  width: 100%;
+}
+.questions {
+  display: flex;
+  margin: 0%;
+}
+.questions p{
+  margin-top: 2px ;
+  margin-left: 10px;
+  font-size:x-large;
+  
+
+}
+.div2{
+  margin: 8px 0px 5px 10px;
+  text-align: initial;
+
+}
+
+.hint{
+  height: 400px;
+  display: flex;
+  margin-top: 4%;
+}
+.div2 input{
+  margin: 1% 5px 1px 1px;
+  animation-name: myanimation;
+  animation-duration: 10s;
+  background-color: white;
+}
+.div2 label{
+  margin: 0px 14px 27px 2px;
+  font-size: large;
+  width:-webkit-fill-available;
+  background-color: antiquewhite;
+  padding: 5px;
+  
+}
+.inputtag{
+  border: none;
+  border-bottom: solid 1px;
+
+  cursor: pointer;
+
+}
+.label{
+  cursor: pointer;
+}
+.projectname{
+  text-align: initial;
+
+}
+.inputfield{
+  border: none;
+  border-bottom: solid 0.5px;
+  width: 70%;
+  font-size: large;
+  padding: 0px 0px 0px 20px;
+}
+.file-upload{
+ text-align: center;
+ display: none;
+}
+
+ .addp-container{
+  display: inline-block;
+  border: solid rgb(88, 33, 33);
+  width: 50vw;
+  height: 94vh;
+  font-size: larger;
+  
+
+}
+@media screen and (min-width: 768px) {
+    .addp-container{
+      text-align: initial;
+    }
+  }
+.inner-container{
+  display: grid;
+}
+.type-and-name{
+  width: 75%;
+  margin: 15px 10px 25px 10px;
+}
+#cars{
+  margin: 10px 10px 12px 17px;
+}
+.addp-container input{
+  border: none;
+  border-bottom: solid blue;
+
+}
+.problem-text{
+  width: 83%;
+  border: solid blue;
+  display: inline-table;
+}
+.statement-area{
+  margin-top: 20px;
+
+}
+.options{
+  display: grid;
+  margin: 60px 10px 25px 10px;
+}
+.options input{
+  width: 60%;
+}
+.options label{
+  margin-bottom: 5px;
+} 
+
+
+
+
+@keyframes myAnimation {
+  from {background-color:white;}
+  to {background-color: rgb(52, 224, 167);}
+}
+
 
 @keyframes App-logo-spin {
   from {
