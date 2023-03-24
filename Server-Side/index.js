@@ -119,4 +119,20 @@ app.get('/problem/:id',async(req,resp)=>{
 });
 
 
+// api to update status of the problem.......
+app.put('/problem/:id',async(req,resp)=>{
+    let result=await Problems.findOne({_id:req.params.id});
+    if(result)
+    {
+        let result=await Problems.updateOne(
+            {_id:req.params.id},
+            {
+                $set:req.body
+            }
+        )
+        resp.send(result).status(200);
+    }
+    resp.send("working");
+})
+
 app.listen(5800);
