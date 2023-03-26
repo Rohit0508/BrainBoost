@@ -9,6 +9,7 @@ import Profile from './Components/Profile';
 import Question from './Components/Question';
 import Addproblem from './Components/Addproblem'
 import Statement from './Components/Statement';
+import Home from './Components/Homepage';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           
 
           <Route element={<Privatecomp />}>
-            <Route path='/' element={<h1>HOME</h1>} />
+            <Route path='/' element={<Home />} />
             <Route path='/add-problem' element={<Addproblem />}/>
             <Route path='/about' element={<h1>about page</h1>} />
             <Route path='/profile/:name' element={<Profile />} />

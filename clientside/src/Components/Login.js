@@ -30,9 +30,10 @@ function Login() {
         });
         result = await result.json();
         console.warn(result);
-        if(result.name)
+        if(result.verify)
         {
-          localStorage.setItem("user", JSON.stringify(result));
+          localStorage.setItem("user", JSON.stringify(result.user));
+          localStorage.setItem("token", JSON.stringify(result.verify));
           navigate('/');
         }
         else

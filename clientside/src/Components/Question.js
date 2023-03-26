@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    
+    faInstagram,
+    faSkyatlas,
+    faGgCircle
+  } from "@fortawesome/free-brands-svg-icons";
 
 
 
@@ -13,8 +20,12 @@ const Question=()=>{
         getQuestions();
     },[]);
     
+
+    // passing Jason web token wtih headers to verify authentication of user.........
     const getQuestions= async () => {
-        let result = await fetch(`http://localhost:5800/${params.type}`);
+        let result = await fetch(`http://localhost:5800/${params.type}`,{
+          headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
+        });
         result = await result.json();
         setQuestion(result);
         console.log(params);
@@ -33,7 +44,7 @@ const Question=()=>{
                 <th width="5%">Level</th>
                 <th width="5%">status</th>
                 <th width="5%">Mark</th>
-                <th width="5%">Mark</th>
+                <th width="5%"><FontAwesomeIcon icon={faSkyatlas} size="2x" /></th>
             </tr>
         </thead>
       </Table>

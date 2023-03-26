@@ -213,12 +213,231 @@ a.instagram {
   margin-bottom: 5px;
 } 
 
-/* to implement hint CSS....................... */
+/* to implement Add problem new  CSS....................... */
+
+.container-contact100 {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #e6e6e6;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+.wrap-contact100 {
+  width: 920px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 62px 55px 90px;
+}
+
+.contact100-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.contact100-form-title {
+  display: block;
+  width: 100%;
+  font-family: Montserrat-Black;
+  font-size: 39px;
+  color: #333;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 59px;
+}
+
+.validate-input {
+  position: relative;
+}
+
+.wrap-input100 {
+  width: 100%;
+  position: relative;
+  border: 1px solid #e6e6e6;
+  border-radius: 13px;
+  padding: 10px 30px 9px 22px;
+  margin-bottom: 20px;
+}
+input.input100 {
+  height: 40px;
+}
+
+.selecttype-level {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  outline: none;
+  border: none;
+  writing-mode: horizontal-tb !important;
+    
+}
+
+.label-input100 {
+  font-family: Montserrat-SemiBold;
+  font-size: 10px;
+  color: #393939;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+textarea.input100 {
+  min-height: 120px;
+  padding-top: 9px;
+  padding-bottom: 13px;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+textarea {
+  outline: none;
+  border: none;
+}
+
+.input100 {
+  display: block;
+  width: 100%;
+  background: 0 0;
+  font-family: Montserrat-SemiBold;
+  font-size: 18px;
+  color: #555;
+  line-height: 1.2;
+  padding-right: 15px;
+}
+.bg1 {
+  background-color: #f7f7f7;
+}
+
+
+
+.container-contact100-form-btn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  width: 100%;
+}
+.contact100-form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+  background-color: #333;
+  border-radius: 25px;
+  font-family: Montserrat-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  -webkit-transition: all .4s;
+  -o-transition: all .4s;
+  -moz-transition: all .4s;
+  transition: all .4s;
+}
+
+button {
+  outline: none!important;
+  border: none;
+  background: 0 0;
+  overflow: visible;
+
+}
+
+@media screen and (max-width: 576px){
+.alert-validate::before {
+    padding: 0 10px;
+}
+}
+
+@media screen and (max-width: 576px) {
+  .wrap-input100 {
+    padding: 10px 10px 9px;
+}
+}
+
+
+/* Home css implementation......... */
+
+.Home-container{
+  background-image: url('https://preview.colorlib.com/theme/webuni/img/bg.jpg.webp'); 
+   background-size: "cover";
+  height: 108vh;
+  margin-top: -70px;
+  font-size:50px;
+  background-repeat:no-repeat; 
+  background-position: top center;
+}
+
+.course{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+.course-col{
+  margin-bottom:5% ;
+  flex-basis: 31%;
+  background:#fff3f3 ;
+  border: radius 10px; ;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 00.5s;
+
+}
+.course-col:hover{
+  box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+.row
+{
+  justify-content: space-between;
+}
+
+/* css to show topics  */
+.topic-list{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+.topic-col{
+  margin-bottom:5% ;
+  flex-basis: 31%;
+  /* background:#fff3f3 ; */
+  border: radius 10px; ;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 00.5s;
+}
 
 
 
 
+@media(max-width:700px){
+  .row{
+      flex-direction: column;
 
+  }
+}
 
 @keyframes myAnimation {
   from {background-color:white;}

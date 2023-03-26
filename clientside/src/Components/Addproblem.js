@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
+
 
 function Addproblem() {
 
@@ -28,12 +28,18 @@ function Addproblem() {
         alert("fill all fields");
         return;
       }
+      if(option1===option2||option3===option4||option1===option3||option1===option4||option2===option3)
+      {
+        alert("Please check Details !");
+        return;
+      }
     let result = await fetch("http://localhost:5800/", {
       method: 'post',
       body: JSON.stringify({solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
       }
     });
     result = await result.json();
@@ -47,45 +53,135 @@ function Addproblem() {
   return (
    
    
-    <div>
-    <div className="addp-container">
-      <div className="inner-container">
+    // <div>
+    // <div className="addp-container">
+    //   <div className="inner-container">
         
-          <label id="9000">Problem name: <input  className="type-and-name" type="text" value={name} onChange={(e) => setName(e.target.value)} /></label>
-          <label id="8000" >Type Of Problem:<select id="cars" onChange={(e) => setType(e.target.value)}>
-            <option value={"puzzels"}  >puzzels</option>
-            <option value={"jee"}>jee</option>
-            <option value={"computer"}>computer</option>
-          </select></label>
+    //       <label id="9000">Problem name: <input  className="type-and-name" type="text" value={name} onChange={(e) => setName(e.target.value)} /></label>
+    //       <label id="8000" >Type Of Problem:<select id="cars" onChange={(e) => setType(e.target.value)}>
+    //         <option value={"puzzels"}  >puzzels</option>
+    //         <option value={"jee"}>jee</option>
+    //         <option value={"computer"}>computer</option>
+    //       </select></label>
         
 
-        <label className="statement-area">Statement: <textarea className="problem-text"  placeholder="Problem Statement !" 
-      type="text" value={statement} onChange={(e) => setStatement(e.target.value)}></textarea></label>
+    //     <label className="statement-area">Statement: <textarea className="problem-text"  placeholder="Problem Statement !" 
+    //   type="text"  ></textarea></label>
       
-        <div className="options">
-      <label>Option 1: <input type="text" value={option1} onChange={(e) => setOption1(e.target.value)}></input></label>
-      <label >Option 2: <input type="text" value={option2} onChange={(e) => setOption2(e.target.value)}></input></label>
-      <label >Option 3: <input type="text" value={option3} onChange={(e) => setOption3(e.target.value)}></input></label>
-      <label >Option 4: <input type="text" value={option4} onChange={(e) => setOption4(e.target.value)}></input></label>
-      <label >Answer : <input type="text" value={ans} onChange={(e) => setAns(e.target.value)}></input></label>
+    //     <div className="options">
+    //   <label>Option 1: <input type="text" value={option1} onChange={(e) => setOption1(e.target.value)}></input></label>
+    //   <label >Option 2: <input type="text" value={option2} onChange={(e) => setOption2(e.target.value)}></input></label>
+    //   <label >Option 3: <input type="text" value={option3} onChange={(e) => setOption3(e.target.value)}></input></label>
+    //   <label >Option 4: <input type="text" value={option4} onChange={(e) => setOption4(e.target.value)}></input></label>
+    //   <label >Answer : <input type="text" value={ans} onChange={(e) => setAns(e.target.value)}></input></label>
       
       
-      </div>
-      <label id="8000" >Level Of Problem:<select id="cars" onChange={(e) => setLevel(e.target.value)}>
-            <option value={"Easy"} >Easy</option>
-            <option value={"Medium"}>Medium</option>
-            <option value={"Hard"} >Hard</option>
-          </select></label>
-      <label className="statement-area">Hint :  <textarea className="problem-text"  placeholder="Problem Statement !" 
-      type="text" value={hint} onChange={(e) => setHint(e.target.value)}></textarea></label>
+    //   </div>
+    //   <label id="8000" >Level Of Problem:<select id="cars" onChange={(e) => setLevel(e.target.value)}>
+    //         <option value={"Easy"} >Easy</option>
+    //         <option value={"Medium"}>Medium</option>
+    //         <option value={"Hard"} >Hard</option>
+    //       </select></label>
+    //   <label className="statement-area">Hint :  <textarea className="problem-text"  placeholder="Problem Statement !" 
+    //   type="text" value={hint} onChange={(e) => setHint(e.target.value)}></textarea></label>
      
-      </div>
+    //   </div>
       
+    // </div>
+    // <p>Before Submission make sure to fill all the fields<br></br>
+    // And Rewieve once...</p>
+    // <p>Thanks for Submission &#128525;... <Button onClick={addproblem} id="saveButton" variant="primary">Submit</Button>{' '}</p>
+    // <h3>Happy Learning&#128525;...</h3>
+    // </div>
+
+
+
+    // something new 
+
+    <div className="container-contact100">
+
+     <div className="wrap-contact100" >
+
+      {/* <form className="contact100-form validateform"> */}
+      <div className="contact100-form validateform">
+
+      <span className="contact100-form-title">Add More Problem</span>
+
+      <div className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">Problem NAME *</span>
+<input className="input100" type="text" value={name} onChange={(e) => setName(e.target.value)} name="name" placeholder="Problem Name" />
     </div>
-    <p>Before Submission make sure to fill all the fields<br></br>
-    And Rewieve once...</p>
-    <p>Thanks for Submission &#128525;... <Button onClick={addproblem} id="saveButton" variant="primary">Submit</Button>{' '}</p>
-    <h3>Happy Learning&#128525;...</h3>
+
+    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">option 1 *</span>
+<input value={option1} onChange={(e) => setOption1(e.target.value)} className="input100" type="text" name="name" placeholder="Option 1" />
+    </div>
+
+    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">option 2 *</span>
+<input value={option2} onChange={(e) => setOption2(e.target.value)} className="input100" type="text" name="name" placeholder="Option 2" />
+    </div>
+
+    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">Option 3 *</span>
+<input value={option3} onChange={(e) => setOption3(e.target.value)} className="input100" type="text" name="name" placeholder="Option 3" />
+    </div>
+
+    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">Option 4 *</span>
+<input value={option4} onChange={(e) => setOption4(e.target.value)} className="input100" type="text" name="name" placeholder="Option 4 " />
+    </div>
+
+    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+<span className="label-input100">Answer  *</span>
+<input value={ans} onChange={(e) => setAns(e.target.value)} className="input100" type="text" name="name" placeholder="Mention correct answer... " />
+    </div>
+  
+    <div className="wrap-input100 input100-select bg1">
+<span className="label-input100">Needed Services *</span>
+
+<div className="selecttype-level">
+<select onChange={(e) => setType(e.target.value)} className="new select" name="service"  aria-hidden="true">
+<option>Please Select</option>
+<option value="puzzels">Puzzels</option>
+<option value="jee">Jee</option>
+<option value="computer">Computer</option>
+</select>
+
+<select onChange={(e) => setLevel(e.target.value)} className="js-select2 select2-hidden-accessible" name="service"  aria-hidden="true">
+<option >Please Select</option>
+<option value="Easy ">Easy</option>
+<option value="Medium">Medium</option>
+<option value="Hard">Hard</option>
+</select>
+
+</div>
+</div>
+
+
+    <div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
+<span className="label-input100">statement</span>
+<textarea type="text" value={statement} onChange={(e) => setStatement(e.target.value)} className="input100" name="message" placeholder="Problem Statement here..."></textarea>
+<span className="btn-hide-validate"></span></div>
+
+<div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
+<span className="label-input100">hint</span>
+<textarea type="text" value={hint} onChange={(e) => setHint(e.target.value)} className="input100" name="message" placeholder="Some hint..."></textarea>
+<span className="btn-hide-validate"></span></div>
+
+      {/* </form> */}
+      </div>
+
+      <div className="container-contact100-form-btn">
+<button onClick={addproblem} className="contact100-form-btn">
+<span>
+Submit
+<i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+</span>
+</button>
+</div>
+
+     </div>
     </div>
 
   );

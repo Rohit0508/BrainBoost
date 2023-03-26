@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import avatar from "./images/profile.png"
-import { Link, useParams } from "react-router-dom";
+import { json, Link, useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import {
   MDBCol,
@@ -99,7 +99,9 @@ const Profile = () => {
 
   const getdetails = async () => {
     // console.warn(params);
-    let result = await fetch(`http://localhost:5800/profilepage/${params.name}`);
+    let result = await fetch(`http://localhost:5800/profilepage/${params.name}`,{
+      headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
+    });
     result = await result.json();
     setName(result.name);
     setEmail(result.email);
@@ -134,7 +136,8 @@ const Profile = () => {
       }),
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
       }
     });
     result = await result.json();

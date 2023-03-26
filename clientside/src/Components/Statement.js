@@ -16,15 +16,20 @@ const Statement=()=>{
 
     },[]);
 
-    let arr=[""];
 
+   
     const getProblemcontent=async()=>{
-        let result=await fetch(`http://localhost:5800/problem/${params.id}`);
+        let  result=await fetch(`http://localhost:5800/problem/${params.id}`,{
+            headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
+          });
         result=await result.json();
         setContent(result);
-        arr=Array.from(result.solvers);
-       
+        var [x,y]=result.solvers;
+        console.log(x);
+        
     };
+
+
 
     const details = localStorage.getItem('user');
 
@@ -77,18 +82,9 @@ const Statement=()=>{
    }
 
 //    to check wether the user has already solved the problem or not .......
-let flag=0;
-for(let m=0;m<arr.length;m++)
-{
-    if(arr[m]===details.name)
-    flag=1;
-}
-if(!flag)
-{
-    arr.push(details.name);
-}
 
-console.log(arr[0]);
+
+
 
    };
 

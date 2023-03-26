@@ -5,6 +5,8 @@ const User=require('./db/User');
 const Userdetail=require('./db/Userdetail');
 const Problems=require('./db/Problem');
 const bodyParser =require('body-parser');
+const Jwt =require('jsonwebtoken');
+const Key="rohit#1290";
 
 const app=express();
 
@@ -20,7 +22,14 @@ app.post('/register',async(req,resp)=>{
     result=result.toObject();
     delete result.password;
     delete result.cpassword;
-    resp.send(result);
+    Jwt.sign({result},Key,{expiresIn:'2h'},(err,token)=>{
+        if(err)
+        {
+            resp.send({result:"something went wrong please try again..."})
+        }
+        resp.send({result,verify:token});
+    });
+    // resp.send(result);
 });
 
 // Login api......
@@ -30,7 +39,14 @@ app.post('/login',async(req,resp)=>{
         let user=await User.findOne(req.body).select("-password -cpassword")
     if(user)
     {
-        resp.send(user);
+        Jwt.sign({user},Key,{expiresIn:'2h'},(err,token)=>{
+            if(err)
+            {
+                resp.send({result:"something went wrong please try again..."})
+            }
+            resp.send({user,verify:token});
+        });
+
     }
     else
     {
@@ -46,7 +62,7 @@ app.post('/login',async(req,resp)=>{
 
 // to save user personal details.........
 
-app.put('/profilepage/:id',async(req,resp)=>{
+app.put('/profilepage/:id',verifytoken,async(req,resp)=>{
     // const id=req.params.id;
    
     let result=await Userdetail.findOne({username:req.params.id});
@@ -72,7 +88,7 @@ app.put('/profilepage/:id',async(req,resp)=>{
 
 // to show personal info saved in db.........
 
-app.get("/profilepage/:id",async(req,resp)=>{
+app.get("/profilepage/:id",verifytoken,async(req,resp)=>{
     let result=await Userdetail.findOne({username:req.params.id});
     if(result)
     {
@@ -88,7 +104,7 @@ app.get("/profilepage/:id",async(req,resp)=>{
 
 // To display list of the questions.......
 
-app.get("/:type",async(req,resp)=>{
+app.get("/:type",verifytoken,async(req,resp)=>{
     let problems= await Problems.find({type:req.params.type});
     
     if(problems.length>0)
@@ -100,7 +116,7 @@ app.get("/:type",async(req,resp)=>{
     }
 });
 //to post problem 
-app.post('/',async(req,resp)=>{
+app.post('/',verifytoken,async(req,resp)=>{
     let problem=new Problems(req.body);
     let result= await problem.save();
     resp.send(result);
@@ -108,7 +124,7 @@ app.post('/',async(req,resp)=>{
 
 // to render the content of the problem
 
-app.get('/problem/:id',async(req,resp)=>{
+app.get('/problem/:id',verifytoken,async(req,resp)=>{
     let result=await Problems.findOne({_id:req.params.id});
     if(result)
     {
@@ -133,6 +149,32 @@ app.put('/problem/:id',async(req,resp)=>{
         resp.send(result).status(200);
     }
     resp.send("working");
-})
+});
+
+// middleware fuction of authentication........
+
+function verifytoken(req,resp,next)
+{
+    let token =req.headers['authorization'];
+    if(token)
+    {
+        token =token.split(' ')[1];
+        console.log(token);
+        Jwt.verify(token,Key,(err,valid)=>{
+            if(err)
+            {
+                resp.status(401).send({result:"Please provide correct token to moov ahead..."});
+            }
+            else
+            {
+                next();
+            }
+        })
+    }
+    else
+    {
+        resp.status(403).send({result:"Please provide token with headrs"});
+    }
+}
 
 app.listen(5800);
