@@ -1,31 +1,37 @@
 import React from "react";
 import photo from "./images/bg.jpg.webp"
 import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const Home=()=>{
     return (
        
         <>
         <div className="Home-container">
-
+            <div className="inner-box">
+              <h2>Every Problem has a solution. You Just have to find it...</h2>
+              <h4>Let's Find it !</h4>
+              <input className="searchbar" type="text" placeholder="Search by topic name"></input>
+              <button className="searchbtn">Search</button>
+            </div>
         </div>
         
         <div>
         
         <section class="course">
-        <h1>Courses we offer</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, laboriosam!</p>   
+        <h1>Explore all Features</h1>
+        <p>Some information to know more about us and about this platform before getting started look at this thank you !</p>   
         <div class="row">
             <div class="course-col">
-                <h3>6th TO 8th</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sequi expedita facilis placeat dolor fuga similique. Ea cum repellendus culpa aperiam non perferendis commodi, sint labore quos minima odio tenetur.</p>
+                <h3>Your Profile</h3>
+                <p>There is a Profile section where you can share your personal details like name, college, contact-details, your experiences, more about your projects to make profile more better you can upload your photo. </p>
             </div>
             <div class="course-col">
-                <h3>HIGH SCHOOL</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sequi expedita facilis placeat dolor fuga similique. Ea cum repellendus culpa aperiam non perferendis commodi, sint labore quos minima odio tenetur.</p>
+                <h3>Variety Of Problems</h3>
+                <p>Here you will get number of variety of problems based on different topics like- puzzels, computer, jee(physics, chemistry, math). select a top, start your journey from today.</p>
             </div>
             <div class="course-col">
-                <h3>INTERMEDIATE</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sequi expedita facilis placeat dolor fuga similique. Ea cum repellendus culpa aperiam non perferendis commodi, sint labore quos minima odio tenetur.</p>
+                <h3>Discussion</h3>
+                <p>Here we provide you a better intraction level with questions and other users via discussion section, ask your queries put your idea to solve the problems.</p>
             </div>
         </div>     
     </section>
@@ -38,16 +44,16 @@ const Home=()=>{
           <div className="topic-col">
           <ListGroup>
           <ListGroup.Item action >
-        Secondary
+        <Link to="physics">Physics</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+      <Link to="chemistry"> Chemistry</Link>
       </ListGroup.Item>
       <ListGroup.Item action >
-        Secondary
+        <Link to="math">Mathmatics</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+        <Link to="gk">General knowledge</Link>
       </ListGroup.Item>
     </ListGroup>
           </div>
@@ -56,16 +62,17 @@ const Home=()=>{
           <ListGroup>
       
           <ListGroup.Item action >
-        Secondary
+       <Link to="boc">Basics of Computer</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+        <Link to="co">Computer architeture</Link>
       </ListGroup.Item>
       <ListGroup.Item action >
-        Secondary
+       <Link to="networking"> Networking</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+       <Link to="api">
+       Rest API</Link>
       </ListGroup.Item>
 
     </ListGroup>
@@ -75,16 +82,16 @@ const Home=()=>{
           <ListGroup>
      
       <ListGroup.Item action >
-        Secondary
+       <Link to="lt"> Logical thinking</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+       <Link to="matrix">Matrix</Link>
       </ListGroup.Item>
       <ListGroup.Item action >
-        Secondary
+        <Link to="n-puzzels">N-puzzels</Link>
       </ListGroup.Item>
       <ListGroup.Item action variant="light">
-        Light
+       <Link to="gaming"> Gameing problem</Link>
       </ListGroup.Item>
     
     </ListGroup>

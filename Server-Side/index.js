@@ -105,15 +105,35 @@ app.get("/profilepage/:id",verifytoken,async(req,resp)=>{
 // To display list of the questions.......
 
 app.get("/:type",verifytoken,async(req,resp)=>{
-    let problems= await Problems.find({type:req.params.type});
+    // let problems= await Problems.find({type:req.params.type});
     
+    // if(problems.length>0)
+    // {
+    //     resp.send(problems);
+    // }
+    // else{
+    //     resp.send({result:"No problem found"});
+    // }
+
+    let problems=await Problems.find(
+        {
+            "$or":[
+                {type:{$regex:req.params.type}},
+                {topic:{$regex:req.params.type}}
+
+
+            ]
+        }
+    );
     if(problems.length>0)
     {
         resp.send(problems);
     }
-    else{
-        resp.send({result:"No problem found"});
+    else
+    {
+        resp.send("no question found");
     }
+
 });
 //to post problem 
 app.post('/',verifytoken,async(req,resp)=>{

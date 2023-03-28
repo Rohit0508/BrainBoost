@@ -14,6 +14,7 @@ function Addproblem() {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [hint, setHint] = useState("");
+  const [topic ,setTopic]=useState("");
   let solvers=[];
 
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Addproblem() {
   const addproblem = async () => {
     console.log(type ,ans,hint,statement,option1,level );
     
-      if(!name||!type||!ans||!hint||!level||!statement||!option1||!option2||!option3||!option4)
+      if(!name||!type||!ans||!hint||!level||!statement||!option1||!option2||!option3||!option4||!topic)
       {
         alert("fill all fields");
         return;
@@ -35,7 +36,7 @@ function Addproblem() {
       }
     let result = await fetch("http://localhost:5800/", {
       method: 'post',
-      body: JSON.stringify({solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
+      body: JSON.stringify({topic,solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
@@ -138,14 +139,32 @@ function Addproblem() {
     </div>
   
     <div className="wrap-input100 input100-select bg1">
-<span className="label-input100">Needed Services *</span>
+<span className="label-input100">Fill all details*</span>
 
 <div className="selecttype-level">
+  {/* to select type of problem */}
 <select onChange={(e) => setType(e.target.value)} className="new select" name="service"  aria-hidden="true">
 <option>Please Select</option>
 <option value="puzzels">Puzzels</option>
 <option value="jee">Jee</option>
 <option value="computer">Computer</option>
+</select>
+
+{/* to select topic specific .. */}
+<select onChange={(e) => setTopic(e.target.value)} className="new select" name="service"  aria-hidden="true">
+<option>Please Select</option>
+<option value="physics">Physics</option>
+<option value="chemistry">Chemistry</option>
+<option value="math">Mathematics</option>
+<option value="gk">General knowledge</option>
+<option value="boc">Basics of computer</option>
+<option value="co">Computer architeture</option>
+<option value="networking">Networking</option>
+<option value="api">Rest API</option>
+<option value="lt">Logical thinking</option>
+<option value="matrix">Matrix</option>
+<option value="n-puzzel">N-puzzels</option>
+<option value="gaming">Gameing problem</option>
 </select>
 
 <select onChange={(e) => setLevel(e.target.value)} className="js-select2 select2-hidden-accessible" name="service"  aria-hidden="true">

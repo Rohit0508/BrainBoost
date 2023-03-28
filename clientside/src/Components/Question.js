@@ -21,7 +21,7 @@ const Question=()=>{
     },[]);
     
 
-    // passing Jason web token wtih headers to verify authentication of user.........
+    // passing Json web token wtih headers to verify authentication of user.........
     const getQuestions= async () => {
         let result = await fetch(`http://localhost:5800/${params.type}`,{
           headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
