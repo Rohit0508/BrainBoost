@@ -22,7 +22,7 @@ app.post('/register',async(req,resp)=>{
     result=result.toObject();
     delete result.password;
     delete result.cpassword;
-    Jwt.sign({result},Key,{expiresIn:'2h'},(err,token)=>{
+    Jwt.sign({result},Key,{expiresIn:'5h'},(err,token)=>{
         if(err)
         {
             resp.send({result:"something went wrong please try again..."})
@@ -39,7 +39,7 @@ app.post('/login',async(req,resp)=>{
         let user=await User.findOne(req.body).select("-password -cpassword")
     if(user)
     {
-        Jwt.sign({user},Key,{expiresIn:'2h'},(err,token)=>{
+        Jwt.sign({user},Key,{expiresIn:'5h'},(err,token)=>{
             if(err)
             {
                 resp.send({result:"something went wrong please try again..."})
@@ -105,15 +105,6 @@ app.get("/profilepage/:id",verifytoken,async(req,resp)=>{
 // To display list of the questions.......
 
 app.get("/:type",verifytoken,async(req,resp)=>{
-    // let problems= await Problems.find({type:req.params.type});
-    
-    // if(problems.length>0)
-    // {
-    //     resp.send(problems);
-    // }
-    // else{
-    //     resp.send({result:"No problem found"});
-    // }
 
     let problems=await Problems.find(
         {
@@ -168,8 +159,26 @@ app.put('/problem/:id',async(req,resp)=>{
         )
         resp.send(result).status(200);
     }
-    resp.send("working");
+    // resp.send("working");
 });
+
+// Api to show the solved question list and favorites.........
+
+app.get("/user/lists",async(req,resp)=>{
+
+    let problems=await Problems.find({});
+    if(problems.length>0)
+    {
+        resp.send(problems);
+    }
+    else
+    {
+        resp.send("no question found");
+    }
+
+});
+
+
 
 // middleware fuction of authentication........
 
@@ -195,6 +204,8 @@ function verifytoken(req,resp,next)
     {
         resp.status(403).send({result:"Please provide token with headrs"});
     }
-}
+};
+
+
 
 app.listen(5800);

@@ -60,6 +60,7 @@ a.instagram {
   margin-top: 50px;
 
 }
+
 /* Style to list the questions......... */
 .question-list ul li{
   display: inline-flex;
@@ -486,6 +487,18 @@ color: white;
       flex-direction: column;
 
   }
+}
+
+.comments{
+ border: solid bisque;
+ margin-bottom: 10px;
+ height: 60px;
+ overflow-y: auto;
+
+}
+.all-lists{
+  margin: 10px;
+  padding: 2%;
 }
 
 @keyframes myAnimation {

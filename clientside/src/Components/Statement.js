@@ -8,7 +8,7 @@ const Statement=()=>{
     const [submitteddata, setData] = React.useState("");
     const [content,setContent]=useState([]);
     const [show, setShow] = useState(false);
-
+    const [solvers,setSolvers]=useState([]);
 
     const params=useParams();
     useEffect(()=>{
@@ -17,40 +17,42 @@ const Statement=()=>{
     },[]);
 
 
-   
+//    Api call to get content of the problem......
     const getProblemcontent=async()=>{
         let  result=await fetch(`http://localhost:5800/problem/${params.id}`,{
             headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
           });
         result=await result.json();
         setContent(result);
-        var [x,y]=result.solvers;
-        console.log(x);
+        setSolvers(result.solvers);
+       
         
     };
 
 
+        
 
     const details = localStorage.getItem('user');
+    // console.log(JSON.parse(details).name);
 
+// Api call to update status of user....
+    const saveStatus=async()=>{
 
-    // const saveStatus=async()=>{
+       
+        let result = await fetch(`http://localhost:5800/problem/${params.id}`, {
+            method: "Put",
+            body: JSON.stringify({
+             solvers
+            }),
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          result = await result.json();
+    console.warn(result);
 
-    //     console.log(status);
-    //     let result = await fetch(`http://localhost:5800/problem/${params.id}`, {
-    //         method: "Put",
-    //         body: JSON.stringify({
-    //           status
-    //         }),
-    //         mode: 'cors',
-    //         headers: {
-    //           'Content-Type': 'application/json'
-    //         }
-    //       });
-    //       result = await result.json();
-    // console.warn(result);
-
-    // }
+    }
 
 
  
@@ -79,9 +81,32 @@ const Statement=()=>{
                 }
             }
         }
+
+
    }
 
 //    to check wether the user has already solved the problem or not .......
+   if(submitteddata===content.ans)
+   {
+    var flag=0;
+    for(let i=0;i<solvers.length;i++)
+    {
+        if(solvers[i]==JSON.parse(details).name)
+        {
+            flag=1;
+            console.log(flag);
+        }
+    }
+    if(flag===0)
+    {
+        solvers.push(JSON.parse(details).name);
+        console.log("adsd");
+        saveStatus();
+        
+    }
+
+
+   }
 
 
 
@@ -137,6 +162,13 @@ const Statement=()=>{
 
       {!show && <Button variant="primary" size="sm" onClick={() => setShow(true)}>Want Some Hint !</Button>}
         </div>
+
+        {/* comment section to post your comment and reviews */}
+       <div className="comments">
+       <div className="inner-comments">
+        
+       </div>
+       </div>
     </div>
 
     );

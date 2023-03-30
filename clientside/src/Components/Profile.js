@@ -53,6 +53,7 @@ const Profile = () => {
     setPostImage(base64);
     // console.log(postImage.myfile);  
   };
+
   // method to convert imagefile into base64 binary data.......................
   function convertbase64(file) {
     return new Promise((resolve, reject) => {
@@ -157,12 +158,16 @@ const Profile = () => {
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
-            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4 d-flex flex-row-reverse">
+            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4 flex-row-reverse">
               <MDBBreadcrumbItem>
                 <Button onClick={toggleInput} id="updateButton" variant="primary">Update</Button>{' '}
                 <Button onClick={savedetail} id="saveButton" variant="primary">Save</Button>{' '}
+                
+  
               </MDBBreadcrumbItem>
+              
             </MDBBreadcrumb>
+            
 
           </MDBCol>
         </MDBRow>
@@ -193,7 +198,7 @@ const Profile = () => {
                 </div>
               </MDBCardBody>
             </MDBCard>
-
+          {/* Social details of the users............ */}
             <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup className="rounded-3">
@@ -222,9 +227,16 @@ const Profile = () => {
                     <MDBCardText><input readOnly id="909" className="inputtag common-class" type="url" name="twitter link" placeholder="Twitter Profile" onChange={(e) => setTwitter(e.target.value)} value={twitter} /> </MDBCardText>
                   </MDBListGroupItem>
                 </MDBListGroup>
+
               </MDBCardBody>
             </MDBCard>
+
+        {/* Ended.................... */}
+        
+               
+
           </MDBCol>
+
           <MDBCol lg="8">
             <MDBCard className="mb-4">
               <MDBCardBody>
@@ -327,9 +339,15 @@ const Profile = () => {
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
+
+
+              
             </MDBRow>
           </MDBCol>
         </MDBRow>
+
+    
+
       </MDBContainer>
     </section>
   );

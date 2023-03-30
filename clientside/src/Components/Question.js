@@ -28,10 +28,28 @@ const Question=()=>{
         });
         result = await result.json();
         setQuestion(result);
-        console.log(params);
+        // console.log(params);
         console.log(result);
 
     };
+
+      // function to show problem status .....
+      const details = localStorage.getItem('user');
+      const NAME=JSON.parse(details).name;
+
+      const check=(arr,str)=>{
+          for(let i=0;i<arr.length;i++)
+          {
+            if(arr[i]===str)
+            {
+              return "Solved";
+            }
+          }
+          return "Not Solved";
+      }
+      let a=["Ram","mohan"];
+      console.log(check(a,"Ram"));
+
     return (
         
       <div>
@@ -41,8 +59,8 @@ const Question=()=>{
             <tr>
                 <th width="5%">#</th>
                 <th>Name</th>
-                <th width="5%">Level</th>
-                <th width="5%">status</th>
+                <th width="6%">Level</th>
+                <th width="8%">status</th>
                 <th width="5%">Mark</th>
                 <th width="5%"><FontAwesomeIcon icon={faSkyatlas} size="2x" /></th>
             </tr>
@@ -59,8 +77,8 @@ const Question=()=>{
       <tr key={index}>
             <td width="5%">{index+1}</td>
             <td ><Link to={"/problem/"+item._id}>{item.name}</Link></td>
-            <td  width="5%">{item.level}</td>
-           <td  width="5%">Name</td>
+            <td  width="6%">{item.level}</td>
+           <td  width="8%">{check(item.solvers,NAME)}</td>
            <td  width="5%">Name</td>
            <td  width="5%">Name</td>
             
