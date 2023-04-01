@@ -12,6 +12,7 @@ import Statement from './Components/Statement';
 import Home from './Components/Homepage';
 import Lists from './Components/Lists';
 
+
 function App() {
   return (
     <div className='App' >
@@ -21,13 +22,10 @@ function App() {
 
         <Routes>
 
-
-          
-
           <Route element={<Privatecomp />}>
             <Route path='/' element={<Home />} />
-            <Route path='/user/lists' element={<Lists/>} />
-            <Route path='/add-problem' element={<Addproblem />}/>
+            <Route path='/user/lists' element={<Lists />} />
+            <Route path='/add-problem' element={<Addproblem />} />
             <Route path='/about' element={<h1>about page</h1>} />
             <Route path='/profile/:name' element={<Profile />} />
             <Route path='/:type' element={<Question />} />

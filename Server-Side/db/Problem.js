@@ -13,7 +13,9 @@ const userSchema=new mongoose.Schema({
     level:String,
     hint:String,
     solvers:Array,
-    topic:String
+    topic:String,
+    comments:Array
 })
 
 module.exports=mongoose.model("problems",userSchema);
+// need some optimisation

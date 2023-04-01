@@ -1,4 +1,6 @@
 const express=require('express');
+// changes made to add socket.io
+const app=express();
 require('./db/config');
 const cors=require('cors');
 const User=require('./db/User');
@@ -8,12 +10,14 @@ const bodyParser =require('body-parser');
 const Jwt =require('jsonwebtoken');
 const Key="rohit#1290";
 
-const app=express();
+
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))
 app.use(express.json());
 app.use(cors());
+
+
 
 // signup api.............
 app.post('/register',async(req,resp)=>{
@@ -22,7 +26,7 @@ app.post('/register',async(req,resp)=>{
     result=result.toObject();
     delete result.password;
     delete result.cpassword;
-    Jwt.sign({result},Key,{expiresIn:'5h'},(err,token)=>{
+    Jwt.sign({result},Key,{expiresIn:'50h'},(err,token)=>{
         if(err)
         {
             resp.send({result:"something went wrong please try again..."})
@@ -39,7 +43,7 @@ app.post('/login',async(req,resp)=>{
         let user=await User.findOne(req.body).select("-password -cpassword")
     if(user)
     {
-        Jwt.sign({user},Key,{expiresIn:'5h'},(err,token)=>{
+        Jwt.sign({user},Key,{expiresIn:'50h'},(err,token)=>{
             if(err)
             {
                 resp.send({result:"something went wrong please try again..."})
@@ -101,7 +105,6 @@ app.get("/profilepage/:id",verifytoken,async(req,resp)=>{
     }
 });
 
-
 // To display list of the questions.......
 
 app.get("/:type",verifytoken,async(req,resp)=>{
@@ -111,7 +114,6 @@ app.get("/:type",verifytoken,async(req,resp)=>{
             "$or":[
                 {type:{$regex:req.params.type}},
                 {topic:{$regex:req.params.type}}
-
 
             ]
         }

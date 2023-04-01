@@ -17,19 +17,19 @@ const Home=()=>{
         
         <div>
         
-        <section class="course">
+        <section className="course">
         <h1>Explore all Features</h1>
         <p>Some information to know more about us and about this platform before getting started look at this thank you !</p>   
-        <div class="row">
-            <div class="course-col">
+        <div className="row">
+            <div className="course-col">
                 <h3>Your Profile</h3>
                 <p>There is a Profile section where you can share your personal details like name, college, contact-details, your experiences, more about your projects to make profile more better you can upload your photo. </p>
             </div>
-            <div class="course-col">
+            <div className="course-col">
                 <h3>Variety Of Problems</h3>
                 <p>Here you will get number of variety of problems based on different topics like- puzzels, computer, jee(physics, chemistry, math). select a top, start your journey from today.</p>
             </div>
-            <div class="course-col">
+            <div className="course-col">
                 <h3>Discussion</h3>
                 <p>Here we provide you a better intraction level with questions and other users via discussion section, ask your queries put your idea to solve the problems.</p>
             </div>

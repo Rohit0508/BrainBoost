@@ -16,6 +16,7 @@ function Addproblem() {
   const [hint, setHint] = useState("");
   const [topic ,setTopic]=useState("");
   let solvers=[];
+  let comments=[];
 
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ function Addproblem() {
       }
     let result = await fetch("http://localhost:5800/", {
       method: 'post',
-      body: JSON.stringify({topic,solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
+      body: JSON.stringify({comments,topic,solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
