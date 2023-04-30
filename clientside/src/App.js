@@ -10,7 +10,7 @@ import Question from './Components/Question';
 import Addproblem from './Components/Addproblem'
 import Statement from './Components/Statement';
 import Home from './Components/Homepage';
-import Chatroom from './Components/Chatroom';
+import Chatroom from './Components/ProblemList';
 import Forgetpass from './Components/Forgetpass';
 import Resetpass from './Components/Reset';
 
@@ -25,7 +25,7 @@ function App() {
 
           <Route element={<Privatecomp />}>
             {/* <Route path='/' element={<Home />} /> */}
-            <Route path='/user/lists' element={<Chatroom />} />
+            <Route path='/user/:tag' element={<Chatroom />} />
             <Route path='/add-problem' element={<Addproblem />} />
             <Route path='/about' element={<h1>about page</h1>} />
             <Route path='/profile/:name' element={<Profile />} />

@@ -292,6 +292,26 @@ app.put('/reset-link', async (req, resp) => {
     
 });
 
+// API to display solved problems .......*****************************
+app.get("/user/:tag", async (req, resp) => {
+
+    let problems = await Problems.find(
+        {
+            "$or": [
+                { solvers: { $in: [req.params.tag] }  }
+            ]
+        }
+    );
+    if (problems.length > 0) {
+        resp.send(problems);
+    }
+    else {
+        resp.send({problems:"not found"});
+    }
+
+});
+
+
 app.listen(5800);
 
 
