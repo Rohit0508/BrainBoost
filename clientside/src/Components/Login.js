@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
 
 function Login() {
@@ -41,6 +42,8 @@ function Login() {
           alert("not valid");
         }
   }
+
+  
 
   return (
     <div>
@@ -90,6 +93,9 @@ function Login() {
                         Create New account
                       </a>
                     </p>
+                    <a href="/forget-link" className="text-primary fw-bold">
+                        Forget Password
+                      </a>
                   </div>
                 </div>
               </div>

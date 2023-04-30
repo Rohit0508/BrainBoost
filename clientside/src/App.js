@@ -10,8 +10,9 @@ import Question from './Components/Question';
 import Addproblem from './Components/Addproblem'
 import Statement from './Components/Statement';
 import Home from './Components/Homepage';
-import Lists from './Components/Lists';
-
+import Chatroom from './Components/Chatroom';
+import Forgetpass from './Components/Forgetpass';
+import Resetpass from './Components/Reset';
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
         <Routes>
 
           <Route element={<Privatecomp />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/user/lists' element={<Lists />} />
+            {/* <Route path='/' element={<Home />} /> */}
+            <Route path='/user/lists' element={<Chatroom />} />
             <Route path='/add-problem' element={<Addproblem />} />
             <Route path='/about' element={<h1>about page</h1>} />
             <Route path='/profile/:name' element={<Profile />} />
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/forget-link' element={<Forgetpass/>}/>
+          <Route path='/' element={<Home />} />
+          <Route path='/reset-link' element={<Resetpass />} />
 
         </Routes>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
 
+
 function Signup() {
 
     const [name, setName] = useState("");
@@ -25,9 +26,14 @@ function Signup() {
         if(!name||!email||!password||!cpassword)
        {
         window.alert("please fill all fields ");
+        
         return ;
        }
-        
+       if(password!==cpassword)
+        {
+          console.log("password does not match");
+          return;
+        }
         
         let result = await fetch("http://localhost:5800/register", {
             method: 'post',
@@ -50,11 +56,13 @@ function Signup() {
   return (
     <div>
     <Container>
+      
       <Row className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={8} lg={6} xs={12}>
           <Card className="px-4">
             <Card.Body>
               <div className="mb-3 mt-md-4">
+                
                 <h2 className="fw-bold mb-2 text-center text-uppercase ">
                   SignUp
                 </h2>
@@ -93,12 +101,15 @@ function Signup() {
                       controlId="formBasicCheckbox"
                     ></Form.Group>
                     <div className="d-grid">
+            
                       <Button variant="primary" type="button" onClick={collectData} >
                         Create Account
                       </Button>
                     </div>
                   </Form>
+                 {/* <div className="googlesignup"><Button><a href="/auth">Signup with google </a></Button></div> */}
                   <div className="mt-3">
+                    
                     <p className="mb-0  text-center">
                       Already have an account??{' '}
                       <a href="/login" className="text-primary fw-bold">

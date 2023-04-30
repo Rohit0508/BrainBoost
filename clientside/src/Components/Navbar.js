@@ -32,7 +32,7 @@ const navigate=useNavigate();
          
             <Nav.Link href="/">Home</Nav.Link>
          
-             {localStorage.getItem('user')&&(<><Nav.Link href="/user/lists">MyLists</Nav.Link><Nav.Link href={`/profile/${JSON.parse(auth).name}`}>Profile</Nav.Link></>)}
+             {localStorage.getItem('user')&&(<><Nav.Link href="/user/lists">ChatRoom</Nav.Link><Nav.Link href={`/profile/${JSON.parse(auth).name}`}>Profile</Nav.Link></>)}
           
           
          {localStorage.getItem('user')&& (<NavDropdown title="Problems" id="collasible-nav-dropdown">
