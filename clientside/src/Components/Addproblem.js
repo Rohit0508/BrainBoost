@@ -14,34 +14,32 @@ function Addproblem() {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [hint, setHint] = useState("");
-  const [topic ,setTopic]=useState("");
-  let solvers=[];
-  let comments=[];
+  const [topic, setTopic] = useState("");
+  let solvers = [];
+  let comments = [];
 
   const navigate = useNavigate();
 
 
 
   const addproblem = async () => {
-    console.log(type ,ans,hint,statement,option1,level );
-    
-      if(!name||!type||!ans||!hint||!level||!statement||!option1||!option2||!option3||!option4||!topic)
-      {
-        alert("fill all fields");
-        return;
-      }
-      if(option1===option2||option3===option4||option1===option3||option1===option4||option2===option3)
-      {
-        alert("Please check Details !");
-        return;
-      }
+    console.log(type, ans, hint, statement, option1, level);
+
+    if (!name || !type || !ans || !hint || !level || !statement || !option1 || !option2 || !option3 || !option4 || !topic) {
+      alert("fill all fields");
+      return;
+    }
+    if (option1 === option2 || option3 === option4 || option1 === option3 || option1 === option4 || option2 === option3) {
+      alert("Please check Details !");
+      return;
+    }
     let result = await fetch("http://localhost:5800/", {
       method: 'post',
-      body: JSON.stringify({comments,topic,solvers, name, type, level, ans, statement ,hint,option1,option2,option3,option4}),
+      body: JSON.stringify({ comments, topic, solvers, name, type, level, ans, statement, hint, option1, option2, option3, option4 }),
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
+        authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
       }
     });
     result = await result.json();
@@ -53,48 +51,7 @@ function Addproblem() {
   }
 
   return (
-   
-   
-    // <div>
-    // <div className="addp-container">
-    //   <div className="inner-container">
-        
-    //       <label id="9000">Problem name: <input  className="type-and-name" type="text" value={name} onChange={(e) => setName(e.target.value)} /></label>
-    //       <label id="8000" >Type Of Problem:<select id="cars" onChange={(e) => setType(e.target.value)}>
-    //         <option value={"puzzels"}  >puzzels</option>
-    //         <option value={"jee"}>jee</option>
-    //         <option value={"computer"}>computer</option>
-    //       </select></label>
-        
 
-    //     <label className="statement-area">Statement: <textarea className="problem-text"  placeholder="Problem Statement !" 
-    //   type="text"  ></textarea></label>
-      
-    //     <div className="options">
-    //   <label>Option 1: <input type="text" value={option1} onChange={(e) => setOption1(e.target.value)}></input></label>
-    //   <label >Option 2: <input type="text" value={option2} onChange={(e) => setOption2(e.target.value)}></input></label>
-    //   <label >Option 3: <input type="text" value={option3} onChange={(e) => setOption3(e.target.value)}></input></label>
-    //   <label >Option 4: <input type="text" value={option4} onChange={(e) => setOption4(e.target.value)}></input></label>
-    //   <label >Answer : <input type="text" value={ans} onChange={(e) => setAns(e.target.value)}></input></label>
-      
-      
-    //   </div>
-    //   <label id="8000" >Level Of Problem:<select id="cars" onChange={(e) => setLevel(e.target.value)}>
-    //         <option value={"Easy"} >Easy</option>
-    //         <option value={"Medium"}>Medium</option>
-    //         <option value={"Hard"} >Hard</option>
-    //       </select></label>
-    //   <label className="statement-area">Hint :  <textarea className="problem-text"  placeholder="Problem Statement !" 
-    //   type="text" value={hint} onChange={(e) => setHint(e.target.value)}></textarea></label>
-     
-    //   </div>
-      
-    // </div>
-    // <p>Before Submission make sure to fill all the fields<br></br>
-    // And Rewieve once...</p>
-    // <p>Thanks for Submission &#128525;... <Button onClick={addproblem} id="saveButton" variant="primary">Submit</Button>{' '}</p>
-    // <h3>Happy Learning&#128525;...</h3>
-    // </div>
 
 
 
@@ -102,106 +59,106 @@ function Addproblem() {
 
     <div className="container-contact100">
 
-     <div className="wrap-contact100" >
+      <div className="wrap-contact100" >
 
-      {/* <form className="contact100-form validateform"> */}
-      <div className="contact100-form validateform">
+        {/* <form className="contact100-form validateform"> */}
+        <div className="contact100-form validateform">
 
-      <span className="contact100-form-title">Add More Problem</span>
+          <span className="contact100-form-title">Add More Problem</span>
 
-      <div className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">Problem NAME *</span>
-<input className="input100" type="text" value={name} onChange={(e) => setName(e.target.value)} name="name" placeholder="Problem Name" />
-    </div>
+          <div className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">Problem NAME *</span>
+            <input className="input100" type="text" value={name} onChange={(e) => setName(e.target.value)} name="name" placeholder="Problem Name" />
+          </div>
 
-    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">option 1 *</span>
-<input value={option1} onChange={(e) => setOption1(e.target.value)} className="input100" type="text" name="name" placeholder="Option 1" />
-    </div>
+          <div style={{ padding: "0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">option 1 *</span>
+            <input value={option1} onChange={(e) => setOption1(e.target.value)} className="input100" type="text" name="name" placeholder="Option 1" />
+          </div>
 
-    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">option 2 *</span>
-<input value={option2} onChange={(e) => setOption2(e.target.value)} className="input100" type="text" name="name" placeholder="Option 2" />
-    </div>
+          <div style={{ padding: "0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">option 2 *</span>
+            <input value={option2} onChange={(e) => setOption2(e.target.value)} className="input100" type="text" name="name" placeholder="Option 2" />
+          </div>
 
-    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">Option 3 *</span>
-<input value={option3} onChange={(e) => setOption3(e.target.value)} className="input100" type="text" name="name" placeholder="Option 3" />
-    </div>
+          <div style={{ padding: "0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">Option 3 *</span>
+            <input value={option3} onChange={(e) => setOption3(e.target.value)} className="input100" type="text" name="name" placeholder="Option 3" />
+          </div>
 
-    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">Option 4 *</span>
-<input value={option4} onChange={(e) => setOption4(e.target.value)} className="input100" type="text" name="name" placeholder="Option 4 " />
-    </div>
+          <div style={{ padding: "0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">Option 4 *</span>
+            <input value={option4} onChange={(e) => setOption4(e.target.value)} className="input100" type="text" name="name" placeholder="Option 4 " />
+          </div>
 
-    <div style={{padding:"0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
-<span className="label-input100">Answer  *</span>
-<input value={ans} onChange={(e) => setAns(e.target.value)} className="input100" type="text" name="name" placeholder="Mention correct answer... " />
-    </div>
-  
-    <div className="wrap-input100 input100-select bg1">
-<span className="label-input100">Fill all details*</span>
+          <div style={{ padding: "0px" }} className="wrap-input100 validate-input bg1 alert-validate" >
+            <span className="label-input100">Answer  *</span>
+            <input value={ans} onChange={(e) => setAns(e.target.value)} className="input100" type="text" name="name" placeholder="Mention correct answer... " />
+          </div>
 
-<div className="selecttype-level">
-  {/* to select type of problem */}
-<select onChange={(e) => setType(e.target.value)} className="new select" name="service"  aria-hidden="true">
-<option>Please Select</option>
-<option value="puzzels">Puzzels</option>
-<option value="jee">Jee</option>
-<option value="computer">Computer</option>
-</select>
+          <div className="wrap-input100 input100-select bg1">
+            <span className="label-input100">Fill all details*</span>
 
-{/* to select topic specific .. */}
-<select onChange={(e) => setTopic(e.target.value)} className="new select" name="service"  aria-hidden="true">
-<option>Please Select</option>
-<option value="physics">Physics</option>
-<option value="chemistry">Chemistry</option>
-<option value="math">Mathematics</option>
-<option value="gk">General knowledge</option>
-<option value="boc">Basics of computer</option>
-<option value="co">Computer architeture</option>
-<option value="networking">Networking</option>
-<option value="api">Rest API</option>
-<option value="lt">Logical thinking</option>
-<option value="matrix">Matrix</option>
-<option value="n-puzzel">N-puzzels</option>
-<option value="gaming">Gameing problem</option>
-</select>
+            <div className="selecttype-level">
+              {/* to select type of problem */}
+              <select onChange={(e) => setType(e.target.value)} className="new select" name="service" aria-hidden="true">
+                <option>Please Select</option>
+                <option value="puzzels">Puzzels</option>
+                <option value="jee">Jee</option>
+                <option value="computer">Computer</option>
+              </select>
 
-<select onChange={(e) => setLevel(e.target.value)} className="js-select2 select2-hidden-accessible" name="service"  aria-hidden="true">
-<option >Please Select</option>
-<option value="Easy ">Easy</option>
-<option value="Medium">Medium</option>
-<option value="Hard">Hard</option>
-</select>
+              {/* to select topic specific .. */}
+              <select onChange={(e) => setTopic(e.target.value)} className="new select" name="service" aria-hidden="true">
+                <option>Please Select</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="math">Mathematics</option>
+                <option value="gk">General knowledge</option>
+                <option value="boc">Basics of computer</option>
+                <option value="co">Computer architeture</option>
+                <option value="networking">Networking</option>
+                <option value="api">Rest API</option>
+                <option value="lt">Logical thinking</option>
+                <option value="matrix">Matrix</option>
+                <option value="n-puzzel">N-puzzels</option>
+                <option value="gaming">Gameing problem</option>
+              </select>
 
-</div>
-</div>
+              <select onChange={(e) => setLevel(e.target.value)} className="js-select2 select2-hidden-accessible" name="service" aria-hidden="true">
+                <option >Please Select</option>
+                <option value="Easy ">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
+
+            </div>
+          </div>
 
 
-    <div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
-<span className="label-input100">statement</span>
-<textarea type="text" value={statement} onChange={(e) => setStatement(e.target.value)} className="input100" name="message" placeholder="Problem Statement here..."></textarea>
-<span className="btn-hide-validate"></span></div>
+          <div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
+            <span className="label-input100">statement</span>
+            <textarea type="text" value={statement} onChange={(e) => setStatement(e.target.value)} className="input100" name="message" placeholder="Problem Statement here..."></textarea>
+            <span className="btn-hide-validate"></span></div>
 
-<div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
-<span className="label-input100">hint</span>
-<textarea type="text" value={hint} onChange={(e) => setHint(e.target.value)} className="input100" name="message" placeholder="Some hint..."></textarea>
-<span className="btn-hide-validate"></span></div>
+          <div className="wrap-input100 validate-input bg0 rs1-alert-validate alert-validate" >
+            <span className="label-input100">hint</span>
+            <textarea type="text" value={hint} onChange={(e) => setHint(e.target.value)} className="input100" name="message" placeholder="Some hint..."></textarea>
+            <span className="btn-hide-validate"></span></div>
 
-      {/* </form> */}
+          {/* </form> */}
+        </div>
+
+        <div className="container-contact100-form-btn">
+          <button onClick={addproblem} className="contact100-form-btn">
+            <span>
+              Submit
+              <i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+
       </div>
-
-      <div className="container-contact100-form-btn">
-<button onClick={addproblem} className="contact100-form-btn">
-<span>
-Submit
-<i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-</span>
-</button>
-</div>
-
-     </div>
     </div>
 
   );

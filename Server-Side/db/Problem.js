@@ -14,7 +14,8 @@ const userSchema=new mongoose.Schema({
     hint:String,
     solvers:Array,
     topic:String,
-    comments:Array
+    comments:Array,
+    starlist:Array
 })
 
 module.exports=mongoose.model("problems",userSchema);

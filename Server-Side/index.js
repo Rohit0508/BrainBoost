@@ -26,6 +26,26 @@ app.use(cors());
 
 // signup api.............
 app.post('/register', async (req, resp) => {
+    const {name, email, password,cpassword
+        } = req.body;
+            // resp.send("nothing")
+
+        const existingUser = await User.findOne({email});
+        const usernm = await User.findOne({name});
+        if(existingUser){
+            return resp.status(400).json({
+                success:false,
+                message:'User already Exists',
+            });
+        }
+        if(usernm){
+            return resp.status(400).json({
+                success:false,
+                message:'Username not available',
+            });
+        }
+
+
     let user = new User(req.body);
     let result = await user.save();
     result = result.toObject();
@@ -33,9 +53,18 @@ app.post('/register', async (req, resp) => {
     delete result.cpassword;
     Jwt.sign({ result }, Key, { expiresIn: '50h' }, (err, token) => {
         if (err) {
-            resp.send({ result: "something went wrong please try again..." })
+            return resp.status(400).json({
+                success:false,
+                message:'something went wrong please try again...',
+            });
+
         }
-        resp.send({ result, verify: token });
+        return resp.status(400).json({
+            success:true,
+            result,
+            verify:token
+        });
+
     });
 });
 
@@ -96,10 +125,18 @@ app.put('/profilepage/:id', verifytoken, async (req, resp) => {
 app.get("/profilepage/:id", verifytoken, async (req, resp) => {
     let result = await Userdetail.findOne({ username: req.params.id });
     if (result) {
-        resp.send(result);
+        return resp.status(400).json({
+            success:true,
+            result,
+        });
+
     }
     else {
-        resp.send({ result: "no record found" });
+        return resp.status(400).json({
+            success:false,
+            message:'nothing found',
+        });
+
     }
 });
 
@@ -277,14 +314,17 @@ app.post('/forget-link', async (req, resp) => {
 
 
 })
+
 // API to reset the password.......**********************************
 app.put('/reset-link', async (req, resp) => {
     let result = await User.findOne({ email: req.query.email });
+    const {password,cpassword}=req.body;
     if (result) {
+      let  hashedPassword = await bcrypt.hash(password, 10);
         let result = await User.updateOne(
             { email: req.query.email },
             {
-                $set: req.body
+                $set: {password:hashedPassword, cpassword:hashedPassword}
             }
         )
         resp.send(result).status(200);
@@ -299,6 +339,23 @@ app.get("/user/:tag", async (req, resp) => {
         {
             "$or": [
                 { solvers: { $in: [req.params.tag] }  }
+            ]
+        }
+    );
+    if (problems.length > 0) {
+        resp.send(problems);
+    }
+    else {
+        resp.send({problems:"not found"});
+    }
+
+});
+app.get("/liked/:tag", async (req, resp) => {
+
+    let problems = await Problems.find(
+        {
+            "$or": [
+                { starlist: { $in: [req.params.tag] }  }
             ]
         }
     );

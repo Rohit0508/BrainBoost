@@ -603,6 +603,27 @@ color: white;
   overflow:scroll;
 }
 
+/* Star Button css******** */
+
+.star-button {
+  display: inline-block;
+  border:#212529;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.star-icon {
+  color: #adb5bd;
+  font-size: 24px;
+}
+
+.star-icon2{
+  color: red;
+  font-size: 24px;
+}
+
+
 @keyframes myAnimation {
   from {background-color:white;}
   to {background-color: rgb(52, 224, 167);}

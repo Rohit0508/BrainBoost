@@ -22,8 +22,6 @@ import {
   faLinkedin,
   faFacebook,
   faTwitter,
-  faInstagram,
-  faYoutube,
   faGithub,
   faCodepen
 } from "@fortawesome/free-brands-svg-icons";
@@ -81,7 +79,7 @@ const Profile = () => {
   const [facebook, setFacebook] = React.useState("");
   const [p1name, setP1name] = React.useState("");
   const [p2name, setP2name] = React.useState("");
-  const [workp1name, setWork1name] = React.useState("");
+  const [workp1name, setWork1name] =React.useState("");
   const [workp2name, setWork2name] = React.useState("");
   const [projectd1, setProjectd1] = React.useState("");
   const [projectd2, setProjectd2] = React.useState("");
@@ -99,31 +97,53 @@ const Profile = () => {
   // to show the saved information of user in profile page from db........
 
   const getdetails = async () => {
-    // console.warn(params);
+    console.warn(params);
     let result = await fetch(`http://localhost:5800/profilepage/${params.name}`,{
       headers:{authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`}
     });
     result = await result.json();
+    
+    console.log(result);
+    if(result.success){
+
+      result=result.result;
     setName(result.name);
+    if(result.email!=undefined)
     setEmail(result.email);
+    if(result.college!=undefined)
     setCollege(result.college);
+    if(result.address!=undefined)
     setAddress(result.address);
+    if(result.phone!=undefined)
     setPhone(result.phone);
+    if(result.facebook!=undefined)
     setFacebook(result.facebook);
+    if(result.git!=undefined)
     setGit(result.git);
+    if(result.twitter!=undefined)
     setTwitter(result.twitter);
+    if(result.linkedin!=undefined)
     setLinkedIn(result.linkedin);
+    if(result.p1name!=undefined)
     setP1name(result.p1name);
+    if(result.p2name!=undefined)
     setP2name(result.p2name);
+    if(result.workp1name!=undefined)
     setWork1name(result.workp1name);
+    if(result.workp2name!=undefined)
     setWork2name(result.workp2name);
+    if(result.projectd1!=undefined)
     setProjectd1(result.projectd1);
+    if(result.projectd2!=undefined)
     setProjectd2(result.projectd2);
+    if(result.workdisc1!=undefined)
     setWorkdisc1(result.workdisc1);
+    if(result.workdisc2!=undefined)
     setWorkdisc2(result.workdisc2);
+    if(result.postImage!=undefined)
     setPostImage(result.postImage);
 
-
+    }
   }
 
   // api integration to save entered details................ 
@@ -155,6 +175,7 @@ const Profile = () => {
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
+
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
@@ -162,13 +183,8 @@ const Profile = () => {
               <MDBBreadcrumbItem>
                 <Button onClick={toggleInput} id="updateButton" variant="primary">Update</Button>{' '}
                 <Button onClick={savedetail} id="saveButton" variant="primary">Save</Button>{' '}
-                
-  
-              </MDBBreadcrumbItem>
-              
+              </MDBBreadcrumbItem>              
             </MDBBreadcrumb>
-            
-
           </MDBCol>
         </MDBRow>
 
@@ -203,7 +219,7 @@ const Profile = () => {
               <MDBCardBody className="p-0">
                 <MDBListGroup className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 ">
-                    {/* <MDBIcon fas icon="globe fa-lg text-warning" /> */}
+
                     <label className="label" htmlFor="999"><Link to={linkedin}><FontAwesomeIcon icon={faLinkedin} size="2x" style={{ color: "#4d56d7" }} /></Link></label>
                     <MDBCardText><input readOnly id="999" className="inputtag common-class" type="url" name="linkedin link" placeholder="LinkedIn Profile" onChange={(e) => setLinkedIn(e.target.value)} value={linkedin} /> </MDBCardText>
                   </MDBListGroupItem>
@@ -245,7 +261,7 @@ const Profile = () => {
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    {/* <MDBCardText className="text-muted">Johnatan Smith</MDBCardText> */}
+
                     <MDBInput id="inputField" className="text-muted common-class" placeholder="Give your Name" type='text'
                       onChange={(e) => setName(e.target.value)} value={name} readOnly />
                   </MDBCol>
@@ -256,7 +272,7 @@ const Profile = () => {
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    {/* <MDBCardText className="text-muted">example@example.com</MDBCardText> */}
+
                     <MDBInput className="text-muted common-class" placeholder="Provide your email" type='text'
                       onChange={(e) => setEmail(e.target.value)} value={email} readOnly />
                   </MDBCol>
@@ -268,7 +284,7 @@ const Profile = () => {
 
                   </MDBCol>
                   <MDBCol sm="9">
-                    {/* <MDBCardText className="text-muted">(097) 234-5678</MDBCardText> */}
+
                     <MDBInput className="text-muted common-class" placeholder="Phone" type='text'
                       onChange={(e) => setPhone(e.target.value)} value={phone} readonly />
                   </MDBCol>
@@ -279,7 +295,7 @@ const Profile = () => {
                     <MDBCardText>College Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    {/* <MDBCardText className="text-muted">(098) 765-4321</MDBCardText> */}
+
                     <MDBInput className="text-muted common-class" placeholder="Your College NAme" type='text'
                       onChange={(e) => setCollege(e.target.value)} value={college} readOnly />
                   </MDBCol>
@@ -290,7 +306,7 @@ const Profile = () => {
                     <MDBCardText>Address</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    {/* <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText> */}
+
                     <MDBInput className="text-muted common-class" placeholder="Give your Address" type='text'
                       onChange={(e) => setAddress(e.target.value)} value={address} readOnly />
                   </MDBCol>
@@ -332,7 +348,7 @@ const Profile = () => {
 
                     {/* 2nd project details..................... */}
 
-                    <MDBCardText className="mb-1 projectname" style={{ fontSize: '.99rem' }}>WorkPlace:<input readOnly className="inputfield common-class" onChange={(e) => setWork2name(e.target.value)} value={workp2name} /></MDBCardText>
+                    <MDBCardText className="mb-1 projectname" style={{ fontSize: '.99rem' }}>WorkPlace:<input readOnly className="inputfield common-class"  onChange={(e) => setWork2name(e.target.value)} value={workp2name} /></MDBCardText>
                     <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.99rem' }}>Working Experience</MDBCardText>
 
                     <textarea className="common-class" readOnly onChange={(e) => setWorkdisc2(e.target.value)} value={workdisc2} placeholder="Share your working experience  &#128525;... " rows="4" cols="40" wrap="soft" style={{ width: "-webkit-fill-available" }}></textarea>

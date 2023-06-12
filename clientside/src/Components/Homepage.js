@@ -1,8 +1,10 @@
 import React from "react";
-import photo from "./images/bg.jpg.webp"
+import photo from "./images/bg.jpg.webp";
 import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const Home=()=>{
+  const [searchitem, setItem] = React.useState("");
+  
     return (
        
         <>
@@ -10,8 +12,9 @@ const Home=()=>{
             <div className="inner-box">
               <h2>Every Problem has a solution. You Just have to find it...</h2>
               <h4>Let's Find it !</h4>
-              <input className="searchbar" type="text" placeholder="Search by topic name"></input>
-              <button className="searchbtn">Search</button>
+              <input  className="searchbar" type="text" placeholder="Search by topic name" 
+              onChange={(e) => setItem(e.target.value)} value={searchitem}></input>
+              <button  className="searchbtn"><Link style={{textDecoration:"none" ,color:"white"}} to={`./${searchitem}`}>Search</Link></button>
             </div>
         </div>
         

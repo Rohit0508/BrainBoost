@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 
@@ -17,10 +19,59 @@ import { MDBCollapse, MDBBtn } from 'mdb-react-ui-kit';
 const Question = () => {
   const [question, setQuestion] = useState([]);
   const params = useParams();
+  const [starlist, setList] = useState([]);
+
+  const usr = localStorage.getItem('user');
   useEffect(() => {
 
     getQuestions();
+
   }, []);
+
+
+    //    Api call to get content of the problem......
+    
+    const makestar = async (id) => {
+      let result = await fetch(`http://localhost:5800/problem/${id}`, {
+        headers: { authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}` }
+    });
+      result = await result.json();
+      setList(result.starlist);
+      console.log(result.starlist);
+        
+          var flag = 0;
+            for (let i = 0; i < starlist.length; i++) {
+                if (starlist[i] == JSON.parse(usr).name) {
+                    flag = 1;
+                    console.log(flag);
+                }
+            }
+            if (flag === 0) {
+
+                starlist.push(JSON.parse(usr).name);
+                console.log("adsd");
+                saveStatus(id);
+
+            }
+            showToastMessage(); 
+           
+  };
+  
+  const saveStatus = async (id) => {
+    let result = await fetch(`http://localhost:5800/problem/${id}`, {
+        method: "Put",
+        body: JSON.stringify({
+            starlist
+        }),
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    result = await result.json();
+    console.warn(result);
+
+}
 
   // passing Json web token wtih headers to verify authentication of user.........
   const getQuestions = async () => {
@@ -46,7 +97,14 @@ const Question = () => {
     }
     return "Not Solved";
   }
-
+      // dispaly toast message ****************
+      const showToastMessage = () => {
+        toast.success('Successfully added !', {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+      
+      // **************************************** 
   return (
 
     <div>
@@ -58,7 +116,7 @@ const Question = () => {
             <th>Name</th>
             <th width="6%">Level</th>
             <th width="8%">status</th>
-            <th width="5%">Mark</th>
+            <th width="5%">Star</th>
             <th width="5%"><FontAwesomeIcon icon={faSkyatlas} size="2x" /></th>
           </tr>
         </thead>
@@ -71,12 +129,17 @@ const Question = () => {
           <Table striped bordered hover>
 
             <tbody>
-              <tr key={index}>
-                <td width="5%">{index + 1}</td>
-                <td ><Link to={"/problem/" + item._id}>{item.name}</Link></td>
-                <td width="6%">{item.level}</td>
-                <td width="8%">{check(item.solvers, NAME)}</td>
-                <td width="5%">Name</td>
+              <tr key={index} >
+                <td  width="5%">{index + 1}</td>
+                <td  ><Link to={"/problem/" + item._id}>{item.name}</Link></td>
+                <td  width="6%">{item.level}</td>
+                <td  width="8%">{check(item.solvers, NAME)}</td>
+                <td width="5%">
+                <button id="starButton" className="star-button" onClick={()=>{makestar(item._id)}}>
+                <ToastContainer />
+                <span id="starIcon" className="star-icon" >&#9733;</span>
+                </button>
+                </td>
                 <td width="5%">Name</td>
 
 
@@ -87,7 +150,7 @@ const Question = () => {
           </Table>
         )
           :
-          <h1>no product found</h1>
+          <h1>no problems found</h1>
       }
 
     </div>

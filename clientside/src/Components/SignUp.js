@@ -35,6 +35,7 @@ function Signup() {
           return;
         }
         
+        
         let result = await fetch("http://localhost:5800/register", {
             method: 'post',
             body: JSON.stringify({ name, email, password,cpassword }),
@@ -45,10 +46,16 @@ function Signup() {
         });
         result = await result.json();
         console.warn(result);
-        localStorage.setItem("user", JSON.stringify(result.result));
-        localStorage.setItem("token", JSON.stringify(result.verify));
-
-        navigate('/');
+        if(result.success===false){
+          alert("something is wrong");
+          navigate('/login')
+        }
+        else{
+          localStorage.setItem("user", JSON.stringify(result.result));
+          localStorage.setItem("token", JSON.stringify(result.verify));
+          navigate('/');
+        }
+        
        
 
     }
