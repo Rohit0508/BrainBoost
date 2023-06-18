@@ -13,6 +13,7 @@ import Home from './Components/Homepage';
 import Forgetpass from './Components/Forgetpass';
 import Resetpass from './Components/Reset';
 import List from './Components/ProblemList';
+import GoogleSignup from './Components/GoogleSignup';
 function App() {
   return (
     <div className='App' >
@@ -34,6 +35,7 @@ function App() {
           <Route path='/forget-link' element={<Forgetpass/>}/>
           <Route path='/' element={<Home />} />
           <Route path='/reset-link' element={<Resetpass />} />
+          <Route path='/google/login' element={<GoogleSignup />} />
 
         </Routes>
 

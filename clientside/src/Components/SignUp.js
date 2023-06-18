@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
-
+import GoogleSignup from "./GoogleSignup";
 
 function Signup() {
 
@@ -62,6 +62,7 @@ function Signup() {
 
   return (
     <div>
+      
     <Container>
       
       <Row className="vh-100 d-flex justify-content-center align-items-center">
@@ -114,7 +115,7 @@ function Signup() {
                       </Button>
                     </div>
                   </Form>
-                 {/* <div className="googlesignup"><Button><a href="/auth">Signup with google </a></Button></div> */}
+                  <GoogleSignup />
                   <div className="mt-3">
                     
                     <p className="mb-0  text-center">
