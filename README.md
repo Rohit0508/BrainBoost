@@ -20,3 +20,6 @@ BrainBoost is a platform where users can practice challenging problems based on 
 4. Express
 5. JWT Authentication
 6. Google Auth
+
+## Feedback:
+Feel free to file any issue or any other suggestion if you come across
