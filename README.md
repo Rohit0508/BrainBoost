@@ -2,7 +2,7 @@
 
 
 Introduction :
-BrainBoost is a platform where users can practice challenging problems based on different topics like mathes, physics etc...
+BrainBoost is a platform where users can practice challenging problems based on different topics like mathematics, physics, computer etc...
 
 ## Table of Content
 
@@ -23,3 +23,9 @@ BrainBoost is a platform where users can practice challenging problems based on 
 
 ## Feedback:
 Feel free to file any issue or any other suggestion if you come across
+
+## Contribute :
+- All suggestions are welcome
+- Fork repository and contribute
+
+
